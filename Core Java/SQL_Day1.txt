@@ -1,0 +1,60 @@
+//Create Table
+Create table TEACHERS (CLASS number(2) PRIMARY KEY, NAME varchar(15), SUBJECT varchar(10));
+
+Create table STUDENTS(ROLL_NO number(2), NAME varchar(15), SC varchar(2), STANDARD number(2), AGE number(2), FOREIGN KEY(STANDARD) references TEACHERS(CLASS));
+
+//Insert query for TEACHERS table
+
+Insert into TEACHERS values(1, 'Sujatha', 'Maths');
+Insert into TEACHERS values(2, 'Manisha', 'Science');
+Insert into TEACHERS values(3, 'Sunil', 'English');
+Insert into TEACHERS values(4, 'Mamta', 'Hindi');
+Insert into TEACHERS values(5, 'Dinesh', 'Sports');
+Insert into TEACHERS values(6, 'Divya', 'Social');
+Insert into TEACHERS values(7, 'Puneet', 'ECA');
+Insert into TEACHERS values(8, '', '');
+Insert into TEACHERS values(9, '', '');
+Insert into TEACHERS values(10, '', '');
+
+//Insert query for STUDENTS table
+
+Insert into STUDENTS values(1,'Raju','KV',5,11);
+Insert into STUDENTS values(2,'Pooja','KV',3,9);
+Insert into STUDENTS values(3,'Suman','KV',3,9);
+Insert into STUDENTS values(4,'Daniel','KV',4,10);
+Insert into STUDENTS values(5,'Maju','KV',7,13);
+
+//Commit
+commit;
+//Method 1: Using joins
+select teachers.name, teachers.subject from teachers inner join students on teachers.class=students.standard where students.roll_no=3;
+
+select teachers.name, teachers.subject from teachers, students where teachers.class=students.standard and students.roll_no=4;
+
+//Method 2: Using Sub-Query
+select NAME, SUBJECT from TEACHERS where CLASS = (select STANDARD from STUDENTS where ROLL_NO = 1);
+
+//DAY 2 ASSIGNMENT
+
+create table EMPLOYEE(EMP_ID number(5) primary key,NAME varchar(15), AGE number(2), SALARY number (7),DESIGNATION varchar(10));
+
+
+//Mentor's Assignment
+
+create table CUSTOMER_DETAILS(CUSTOMER_ID NUMBER(1) primary key, CUSTOMER_NAME varchar(35), CONTACT_NAME varchar(20), ADDRESS varchar(30),CITY varchar(15),POSTAL_CODE varchar(15),COUNTRY varchar(20));
+
+insert into CUSTOMER_DETAILS values(1,'Alfreds Futterkiste','Maria Anders','Obere Str. 57','Berlin','12209', 'Germany');
+insert into CUSTOMER_DETAILS values(2,'Ana Trujillo Emparedados y helados','Ana Trujillo','Avda. de la Constitución 2222','México D.F.','05021', 'Mexico');
+insert into CUSTOMER_DETAILS values(3,'Antonio Moreno Taquería','Antonio Moreno','Mataderos 2312','México D.F.','05023', 'Mexico');
+insert into CUSTOMER_DETAILS values(4,'Around the Horn','Thomas Hardy','120 Hanover Sq.','London','WA1 1DP', 'UK');
+insert into CUSTOMER_DETAILS values(5,'Berglunds snabbköp','Christina Berglund','Berguvsvägen 8','Luleå','S-958 22', 'Sweden');
+
+
+
+
+CUSTOMER_ID, CUSTOMER_NAME, CONTACT_NAME, ADDRESS varchar(38),CITY varchar(15),POSTAL_CODE varchar(15),COUNTRY varchar(20)
+
+
+
+
+
