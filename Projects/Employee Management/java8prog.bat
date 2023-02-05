@@ -3,3 +3,4 @@ set classpath=.;%classpath%
 set path=C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib;.;%path%
 set classpath=ojdbc6.jar;.;%classpath%
 start
+
