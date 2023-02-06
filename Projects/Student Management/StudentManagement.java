@@ -1,7 +1,7 @@
 //Package Created
 package project2;
 
-//Predefined Packages imported
+//Imported Packages
 import java.util.InputMismatchException;
 import java.util.*;
 import java.util.regex.Pattern;
