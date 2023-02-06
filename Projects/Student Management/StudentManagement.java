@@ -10,25 +10,25 @@ import java.io.*;
 
 class Student
 {
-   public static void add()
-   {
-      int reg_no = InvalidRegIDException.readReg_no();
-      String name = InvalidNameException.readName();
-      int age = InvalidAgeException.readAge();
-      int standard = InvalidStandardException.readStandard();
-      String school = InvalidSchoolException.readSchool();
-      
-      try
+	public static void add()
+	{
+	      int reg_no = InvalidRegIDException.readReg_no();
+	      String name = InvalidNameException.readName();
+	      int age = InvalidAgeException.readAge();
+	      int standard = InvalidStandardException.readStandard();
+	      String school = InvalidSchoolException.readSchool();
+
+	      try
 		{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-         Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
-         PreparedStatement pstmt = con.prepareStatement("Insert into STUDENTS values(?,?,?,?,?)");
-         pstmt.setInt(1,reg_no);
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
+			PreparedStatement pstmt = con.prepareStatement("Insert into STUDENTS values(?,?,?,?,?)");
+			pstmt.setInt(1,reg_no);
 			pstmt.setString(2,name);
 			pstmt.setInt(3,age);
 			pstmt.setInt(4,standard);
 			pstmt.setString(5,school);
-			
+
 			pstmt.execute();
 			pstmt.close();
 		}
@@ -36,99 +36,99 @@ class Student
 		{
 			System.out.println(e);
 		}
-   }
-
-   //Method to display all records
-   public static void displayAll()
-	{
-		try
-		{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-	      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
-         PreparedStatement pstmt = con.prepareStatement("select * from STUDENTS");
-			ResultSet rs=pstmt.executeQuery();  
-			while(rs.next())
-			{
-				System.out.println("\nREGISTRATION NO : "+rs.getInt(1));
-				System.out.println("NAME : "+rs.getString(2));
-				System.out.println("AGE : "+rs.getString(3));
-				System.out.println("STANDARD : "+rs.getInt(4));
-				System.out.println("SCHOOL : "+rs.getString(5));
-			}
-			pstmt.close();
-			con.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
 	}
-   //Method to display by Registration No.
-   public static void displayByRegNo()
+
+//Method to display all records
+public static void displayAll()
+{
+	try
 	{
-		try
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
+		PreparedStatement pstmt = con.prepareStatement("select * from STUDENTS");
+		ResultSet rs=pstmt.executeQuery();  
+		while(rs.next())
 		{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-	      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
-         
-         System.out.print("\nEnter Registration No.: ");
-         int reg_no = new Scanner(System.in).nextInt();
-         
-         PreparedStatement pstmt = con.prepareStatement("select * from STUDENTS where REG_NO=?");
-			pstmt.setInt(1,reg_no);
-         ResultSet rs=pstmt.executeQuery();  
-			while(rs.next())
-			{
-				System.out.println("\nREGISTRATION NO : "+rs.getInt(1));
-				System.out.println("NAME : "+rs.getString(2));
-				System.out.println("AGE : "+rs.getString(3));
-				System.out.println("STANDARD : "+rs.getInt(4));
-				System.out.println("SCHOOL : "+rs.getString(5));
-			}
-			pstmt.close();
-			con.close();
+			System.out.println("\nREGISTRATION NO : "+rs.getInt(1));
+			System.out.println("NAME : "+rs.getString(2));
+			System.out.println("AGE : "+rs.getString(3));
+			System.out.println("STANDARD : "+rs.getInt(4));
+			System.out.println("SCHOOL : "+rs.getString(5));
 		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
+		pstmt.close();
+		con.close();
 	}
-   public static void result()
-   {
-      try
-      {
-         BufferedReader br = new BufferedReader(new InputStreamReader((System.in)));
-         Class.forName("oracle.jdbc.driver.OracleDriver");
-         Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
-         PreparedStatement pstmt = con.prepareStatement("Insert into SUBJECTS values(?,?,?,?,?,?)");
-         
-         System.out.println("--------Enter yours Marks-------");
-         
-         System.out.println("REGISTRATION NO.: ");
-         int reg_no = Integer.parseInt(br.readLine());
-         pstmt.setInt(1,reg_no);
-         System.out.println("ENGLISH: ");
-         int english = Integer.parseInt(br.readLine());
-         pstmt.setInt(2,english);
-         System.out.println("HINDI: ");
-         int hindi = Integer.parseInt(br.readLine());
-         pstmt.setInt(3,hindi);
-         System.out.println("MATHS: ");
-         int maths = Integer.parseInt(br.readLine());
-         pstmt.setInt(4,maths);
-         System.out.println("SCIENCE: ");
-         int science = Integer.parseInt(br.readLine());
-         pstmt.setInt(5,science);
-         System.out.println("SOCIAL STUDIES: ");
-         int sst = Integer.parseInt(br.readLine());
-         pstmt.setInt(6,sst);
+	catch(Exception e)
+	{
+		System.out.println(e);
+	}
+}
+//Method to display by Registration No.
+public static void displayByRegNo()
+{
+	try
+	{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
 
-         int sum = english+hindi+maths+science+sst;
-         double percentage = (sum/500)*100;
-         System.out.println("Your Percentange is: "+percentage);
+		System.out.print("\nEnter Registration No.: ");
+		int reg_no = new Scanner(System.in).nextInt();
 
-         pstmt.execute();  
-         pstmt.close(); 
+		PreparedStatement pstmt = con.prepareStatement("select * from STUDENTS where REG_NO=?");
+		pstmt.setInt(1,reg_no);
+		ResultSet rs=pstmt.executeQuery();  
+		while(rs.next())
+		{
+			System.out.println("\nREGISTRATION NO : "+rs.getInt(1));
+			System.out.println("NAME : "+rs.getString(2));
+			System.out.println("AGE : "+rs.getString(3));
+			System.out.println("STANDARD : "+rs.getInt(4));
+			System.out.println("SCHOOL : "+rs.getString(5));
+		}
+		pstmt.close();
+		con.close();
+	}
+	catch(Exception e)
+	{
+		System.out.println(e);
+	}
+	}
+public static void result()
+{
+	try
+      	{
+		 BufferedReader br = new BufferedReader(new InputStreamReader((System.in)));
+		 Class.forName("oracle.jdbc.driver.OracleDriver");
+		 Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","tiger");
+		 PreparedStatement pstmt = con.prepareStatement("Insert into SUBJECTS values(?,?,?,?,?,?)");
+
+		 System.out.println("--------Enter yours Marks-------");
+
+		 System.out.println("REGISTRATION NO.: ");
+		 int reg_no = Integer.parseInt(br.readLine());
+		 pstmt.setInt(1,reg_no);
+		 System.out.println("ENGLISH: ");
+		 int english = Integer.parseInt(br.readLine());
+		 pstmt.setInt(2,english);
+		 System.out.println("HINDI: ");
+		 int hindi = Integer.parseInt(br.readLine());
+		 pstmt.setInt(3,hindi);
+		 System.out.println("MATHS: ");
+		 int maths = Integer.parseInt(br.readLine());
+		 pstmt.setInt(4,maths);
+		 System.out.println("SCIENCE: ");
+		 int science = Integer.parseInt(br.readLine());
+		 pstmt.setInt(5,science);
+		 System.out.println("SOCIAL STUDIES: ");
+		 int sst = Integer.parseInt(br.readLine());
+		 pstmt.setInt(6,sst);
+
+		 int sum = english+hindi+maths+science+sst;
+		 double percentage = (sum/500)*100;
+		 System.out.println("Your Percentange is: "+percentage);
+
+		 pstmt.execute();  
+		 pstmt.close(); 
       }
       catch(Exception e)
       {
@@ -275,16 +275,16 @@ class InvalidChoiceException extends Exception
                 int ch=new Scanner(System.in).nextInt();
                 if(ch!=1 && ch!=2 && ch!=3 && ch!=4 && ch!=5)
                 {
-                  throw new InvalidChoiceException();
+                	throw new InvalidChoiceException();
                 }
                 else
                 {
-                  return ch;
+                	return ch;
                 }
             }
             catch(InputMismatchException e)
             {
-            System.out.println("Please Enter number only ........");
+            	System.out.println("Please Enter number only ........");
             }
             catch(InvalidChoiceException e)
             {
@@ -400,47 +400,48 @@ public class StudentManagement
 		int choice1, choice2;
 		do{
 			mainMenu();
-         choice1 = InvalidChoiceException.readChoice();
+         		choice1 = InvalidChoiceException.readChoice();
 			System.out.println("--------------------------------------------------");
 			
 			switch(choice1)
 			{
 				// Create
 				case 1:
-               Student.add();
+               				Student.add();
 					break;
 				// Display
 				case 2:
-            do{
-               subMenu();
+            				do
+					{
+               					subMenu();
 
-               choice2 = InvalidChoiceException.readChoice();
+					       choice2 = InvalidChoiceException.readChoice();
 
-               System.out.println("--------------------------------------------------");
-               switch(choice2)
-               {
-                  case 1:
-                     Student.displayByRegNo();
-                     break;
-                  case 2:
-                     Student.displayAll();
-                     break;
-                  case 3:
-                     System.exit(0);
-                     break;
-                  default:
-                     System.out.println("INVALID VALUE ENTERED");
-               }
-            }while(choice2 != 3);
-            break;
+					       System.out.println("--------------------------------------------------");
+					       switch(choice2)
+					       {
+						  case 1:
+						     Student.displayByRegNo();
+						     break;
+						  case 2:
+						     Student.displayAll();
+						     break;
+						  case 3:
+						     System.exit(0);
+						     break;
+						  default:
+						     System.out.println("INVALID VALUE ENTERED");
+					       }
+				    	}while(choice2 != 3);
+				    	break;
 				//Show Result
 				case 3:
 					Student.result();
 					break;
-            //Exit
+            			//Exit
 				case 4:
-               System.exit(0);
-               break;
+				       System.exit(0);
+				       break;
 				default:
 					System.out.println("INVALID VALUE ENTERED");
 			}
