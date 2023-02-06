@@ -6,7 +6,7 @@ public class MainMenu
    
    public static void main(String Args[])
    {
-      StudentManagement obj = new StudentManagement();
-		obj.run();
+     	StudentManagement obj = new StudentManagement();
+	obj.run();
    }
 }
