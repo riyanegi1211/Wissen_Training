@@ -1,0 +1,83 @@
+<body>
+  <!--ngClass-->
+<h1>ngClass Attribute Directive</h1>
+<div [ngClass]="(bCustomer == true)?'customer':'employee'">
+
+<form>
+  User ID : <input type="text" name="uid"><br/><br/>
+  Password : <input type="text" name="pwd"><br/>
+  <button class="btn btn-danger">Login</button><br/>
+</form>
+<br/>
+
+<button type="button" (click)="changeToCustomer()">Change to Customer</button><br/><br/>
+
+<button type="button" (click)="changeToEmployee()">Change to Employee</button><br/>
+</div>
+<h4>Written by Riya :)</h4><br/>
+<!--ngStyle-->
+<h1>ngStyle Attribute Directive</h1>
+<table>
+  <tr><td>Color</td><td><input type="text" [(ngModel)]="strColor"></td></tr>
+  <tr><td>Font Size</td><td><input type="text"[(ngModel)]="strFontSize"></td></tr>
+  <tr><td>Font Family</td><td><input type="text"[(ngModel)]="strFontFam"></td></tr>
+  <tr><td>Text Align </td><td><input type="text"[(ngModel)]="strAlign"></td></tr>
+  <tr><td>Margin</td><td><input type="text"[(ngModel)]="strMargin"></td></tr>
+  <tr><td>Padding </td><td><input type="text"[(ngModel)]="strPadding"></td></tr>
+  <tr><td>Opacity</td><td><input type="text" [(ngModel)]="strOpacity"></td></tr>
+  <tr><td>Background Colour</td><td><input type="text" [(ngModel)]="strBg"></td></tr>
+  </table>
+<br/><br/>
+<p [ngStyle] = "{'color':strColor,
+'fontSize':strFontSize + 'px',
+'fontFamily':strFontFam,
+'textAlign':strAlign,
+'margin':strMargin + 'px',
+'padding':strPadding + 'px' + 'px',
+'opacity':strOpacity,
+'backgroundColor':strBg}">ngStyle Properties</p>
+<br/><br/><br/><br/>
+
+<!--ngFor-->
+<h1>ngFor Structural Directive</h1>
+<h4>List of Employees</h4>
+<div class="container">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <th>User ID</th>
+      <th>Employee Name</th>
+      <th>Location</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList;let i=index;">
+        <td>{{user.userId}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.location}}</td>
+        <td><button class="btn btn-success" (click)="onEdit(user)">Edit</button>&nbsp;
+          <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br/><br/>
+<!--ngIf-->
+<div class="form">
+  <form>
+    <h4>Welcome to our website</h4><br/>
+    Enter your name &nbsp;<input type="text" name="username"><br/><br/>
+    Enter your Email-ID &nbsp;<input type="text" name="password"><br/>
+    <button type = "button" (click)="clickedLogin()" class="btn btn-link">Login</button>
+    <button type = "button" (click)="clickedRegister()" class="btn btn-link">Register</button>
+<br/>
+
+  </form>
+  <div *ngIf="bLogin">
+    <input type = "button" value="Login">
+  </div>
+  <div *ngIf="bRegister">
+    <input type = "button" value="Register">
+  </div>
+</div>
+</body>
